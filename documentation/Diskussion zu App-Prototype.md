@@ -61,4 +61,7 @@
 - Einschränkungen / Einfachheiten:
   - Keine Benuzer anlegbar, sondern erstmal nur ein Standard-Coach und ein Standard-User, ohne Login und Account
 
-    
+### Mockup
+Ich hab mal ein grobes Mockup dazu erstellt. Erstmal nur für mobile view, das ganze responsiv gestalten kann ich mit Quasar dann relativ easy, dafür wollte ich für den Prototypen jetzt kein weiteres Mockup erstellen.
+
+
