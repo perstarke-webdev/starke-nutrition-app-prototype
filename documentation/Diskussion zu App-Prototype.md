@@ -58,6 +58,7 @@
   - Automatische Tests
   - Automatisches Deployment
  
-
+- Einschränkungen / Einfachheiten:
+  - Keine Benuzer anlegbar, sondern erstmal nur ein Standard-Coach und ein Standard-User, ohne Login und Account
 
     
