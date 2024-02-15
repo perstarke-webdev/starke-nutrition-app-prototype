@@ -40,12 +40,12 @@
 
 ## Funktion, die im Prototyp umgesetzt werden soll
 
-**Automatisches Erstellen einer Mahlzeit für angegebene Nährwerte.**
+***Automatisches Erstellen einer Mahlzeit für angegebene Nährwerte.***
 
 - Coach: 
   - Gibt Nährwerte ein
   - erhält Vorschlag für Mahlzeit
-  - Kann neu generieren oder aktzeptieren
+  - Kann neu generieren (lassen) oder akzeptieren
 
 - Trainee:
   - Sieht Mahlzeit
