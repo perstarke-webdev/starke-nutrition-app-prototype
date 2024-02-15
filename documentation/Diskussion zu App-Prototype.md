@@ -64,4 +64,17 @@
 ### Mockup
 Ich hab mal ein grobes Mockup dazu erstellt. Erstmal nur für mobile view, das ganze responsiv gestalten kann ich mit Quasar dann relativ easy, dafür wollte ich für den Prototypen jetzt kein weiteres Mockup erstellen.
 
+[**Mockup bei Canva**](https://www.canva.com/design/DAF8z56g02o/fc0dFiLb2XgaiEcKLf_dPA/edit)
+
+#### Bilder
+
+**Coach-View**  
+![mockup-coach-view](https://github.com/perstarke-webdev/starke-nutrition-app-prototype/assets/7078370/dd6dbbee-ea9e-4260-b1b5-f95a710f8942)
+
+**Trainee-View**   
+![mockup-trainee-view](https://github.com/perstarke-webdev/starke-nutrition-app-prototype/assets/7078370/5aca44da-428c-4bfd-8acf-80de58277618)
+
+
+
+
 
