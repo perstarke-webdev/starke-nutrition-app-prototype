@@ -10,13 +10,15 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+      <div class="q-px-lg q-pt-xl q-mb-md">
+        <div class="text-h5 text-center">Starke Nutrition Coaching</div>
+        <hr>
+        <div class="text-h6 text-center">Mahlzeiten-Planung</div>
+      </div>
+      <q-img
+        src="~assets/header.jpg"
+        class="header-image absolute-top"/>
     </q-header>
 
     <q-drawer
@@ -114,3 +116,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+  .header-image {
+    height: 100%;
+    z-index: -1;
+    opacity: 0.4;
+  }
+</style>
