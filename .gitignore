@@ -1,2 +1,4 @@
 .idea
 .DS_Store
+backend/starke-nutrition-coaching-prototype-backend/__pycache__
+backend/starke-nutrition-coaching-prototype-backend/.venv
