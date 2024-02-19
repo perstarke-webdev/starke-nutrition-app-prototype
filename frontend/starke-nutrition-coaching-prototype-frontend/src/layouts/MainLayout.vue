@@ -14,7 +14,7 @@
       <div class="q-px-lg q-pt-xl q-mb-md">
         <div class="text-h5 text-center">Starke Nutrition Coaching</div>
         <hr>
-        <div class="text-h6 text-center">Mahlzeiten-Planung</div>
+        <div class="text-h6 text-center">Meal-planning</div>
       </div>
       <q-img
         src="~assets/header.jpg"
@@ -121,6 +121,6 @@ export default defineComponent({
   .header-image {
     height: 100%;
     z-index: -1;
-    opacity: 0.4;
+    opacity: 0.2;
   }
 </style>
