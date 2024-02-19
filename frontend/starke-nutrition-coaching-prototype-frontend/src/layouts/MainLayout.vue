@@ -11,6 +11,21 @@
         class="header-image absolute-top"/>
     </q-header>
 
+
+    <q-footer class="footer">
+      <div class="flex flex-center column">
+        <div class="q-pa-md">
+          <div class="q-gutter-x-md">
+            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+          </div>
+        </div>
+      </div>
+    </q-footer>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -31,9 +46,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+
   .header-image {
     height: 100%;
     z-index: -1;
     opacity: 0.2;
+  }
+
+  .footer {
+    background-color: grey;
+  }
+
+  .slight-rounded {
+    border-radius: 5px;
   }
 </style>
