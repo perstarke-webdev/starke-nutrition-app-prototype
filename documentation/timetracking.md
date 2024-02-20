@@ -16,8 +16,14 @@
 
 ### Tuesday, 20.02.2024
 
-- 50 + 20 + 30
   - Further quasar frontend work
-    - Create nutritional requirements input table
-    - Add recommended recipe placeholder
-    - -> Coach view frontend (with placeholders) finished for now
+    - 100 min
+      - Create nutritional requirements input table
+      - Add recommended recipe placeholder
+      - -> Coach view frontend (with placeholders) finished for now
+    - 100 min
+      - Create clickable nav for trainee/coach view
+      - Add second page for trainee view with second layout
+      - add routes
+    - 20 min
+      - Quick update with placeholders for trainee view
