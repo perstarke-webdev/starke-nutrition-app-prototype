@@ -1,33 +1,29 @@
 <template>
   <q-page class="text-center">
 
-    <div class="text-h5 q-pt-lg">Nutritional requirements</div>
+    <div class="text-h5 q-pt-lg">Target macros</div>
 
     <div class="q-pa-md">
       <q-markup-table separator="cell">
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-            <q-input input-class="text-center" outlined v-model="kcal" type="number" />
+          <td class="text-center">{{kcal}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>
-            <q-input input-class="text-center" outlined v-model="proteins" type="number" />
+          <td class="text-center">{{proteins}}g</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Carbs</td>
-            <q-input input-class="text-center" outlined v-model="carbs" type="number" />
+          <td class="text-center">{{carbs}}g</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Fats</td>
-            <q-input input-class="text-center" outlined v-model="fats" type="number" />
+          <td class="text-center">{{fats}}g</td>
         </tr>
         </tbody>
       </q-markup-table>
-
-
-      <q-btn color="primary" class="q-mt-md" label="Submit" />
-
     </div>
 
       <div class="text-h5 q-mb-md">Suggested recipe</div>
@@ -47,13 +43,7 @@
       </q-text>
       </div>
 
-    <q-btn color="primary" class="q-mt-md" label="Recipe details" />
-    <br>
-
-    <div class="q-gutter-x-md q-mb-xl">
-      <q-btn color="primary" class="q-mt-md" label="Generate new" />
-      <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
-    </div>
+    <q-btn color="primary" class="q-mt-md q-mb-xl" label="Recipe details" />
 
   </q-page>
 </template>
