@@ -16,8 +16,12 @@
       <div class="flex flex-center column">
         <div class="q-pa-md">
           <div class="q-gutter-x-md">
-            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
-            <q-btn class="slight-rounded" rounded color="primary" label="X"/>
+              <router-link to="/coach">
+                  <q-btn class="slight-rounded" rounded color="primary" label="Coach"/>
+              </router-link>
+              <router-link to="/trainee">
+                  <q-btn class="slight-rounded" rounded color="primary" label="Trainee"/>
+              </router-link>
             <q-btn class="slight-rounded" rounded color="primary" label="X"/>
             <q-btn class="slight-rounded" rounded color="primary" label="X"/>
             <q-btn class="slight-rounded" rounded color="primary" label="X"/>
