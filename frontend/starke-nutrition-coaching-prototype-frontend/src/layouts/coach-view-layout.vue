@@ -40,7 +40,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout'
+  name: 'coach-view-layout'
 })
 </script>
 
