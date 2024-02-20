@@ -1,4 +1,5 @@
 from flask import Flask, session, request
+from flask_cors import CORS
 from dotenv import load_dotenv
 import requests
 import datetime
@@ -7,6 +8,7 @@ import os
 from werkzeug.exceptions import BadRequestKeyError
 
 app = Flask(__name__)
+CORS(app)
 
 parent_dir = os.path.dirname(os.getcwd())
 
