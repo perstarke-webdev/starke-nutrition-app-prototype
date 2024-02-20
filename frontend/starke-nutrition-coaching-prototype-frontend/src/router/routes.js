@@ -1,10 +1,10 @@
 
 const routes = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    path: '/coach',
+    component: () => import('layouts/CoachViewLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/CoachView.vue') }
     ]
   },
 

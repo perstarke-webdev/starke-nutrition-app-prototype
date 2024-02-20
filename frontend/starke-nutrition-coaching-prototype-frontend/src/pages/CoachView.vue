@@ -65,7 +65,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'IndexPage',
+  name: 'CoachView',
   data() {
     return {
       kcal: '0',
