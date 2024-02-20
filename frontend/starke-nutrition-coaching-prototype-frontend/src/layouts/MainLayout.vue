@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <div class="q-px-lg q-pt-xl q-mb-md">
-        <div class="text-h5 text-center">Starke Nutrition Coaching</div>
+        <div class="text-h5 text-center">Starke Nutrition Coaching (Prototype)</div>
         <hr>
         <div class="text-h6 text-center">Meal-planning</div>
       </div>
@@ -33,15 +33,10 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
-
-  setup () {
-  }
-
+  name: 'MainLayout'
 })
 </script>
 
