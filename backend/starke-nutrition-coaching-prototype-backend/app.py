@@ -1,7 +1,7 @@
 from flask import Flask, session
 from dotenv import load_dotenv
-import datetime
 import requests
+import datetime
 import os
 
 app = Flask(__name__)
@@ -9,6 +9,7 @@ app = Flask(__name__)
 parent_dir = os.path.dirname(os.getcwd())
 
 app.secret_key = os.urandom(12)
+app.permanent_session_lifetime = datetime.timedelta(days=7)
 
 load_dotenv(parent_dir + "/Envs/key.env")
 
@@ -22,26 +23,30 @@ headers = {
 }
 
 
-@app.route("/get_recipes_with_nutrients")
-def get_recipes_with_nutrients():
+def write_recipes_in_list(kcal, proteins, carbs, fats):
+    """
+    :param kcal: the required calories, as int
+    :param proteins: the required grams of proteins, as int
+    :param carbs: the required grams of carbs, as int
+    :param fats: the required grams of fats, as int
+    Creates a list of recipes matching the give nutrients within a 10% range
+    """
 
-    session["kcal"] = 500
-    session["proteins"] = 50
-    session["carbs"] = 50
-    session["fats"] = 10
-    session["allowed_range"] = 0.2
+    session["recipe_counter"] = 0
 
-    min_kcal = float(session["kcal"]) - float(session["kcal"]) * float(session["allowed_range"])
-    max_kcal = float(session["kcal"]) + float(session["kcal"]) * float(session["allowed_range"])
+    allowed_range = 0.1
 
-    min_protein = float(session["proteins"]) - float(session["proteins"]) * float(session["allowed_range"])
-    max_protein = float(session["proteins"]) + float(session["proteins"]) * float(session["allowed_range"])
+    min_kcal = float(kcal) - float(kcal) * float(allowed_range)
+    max_kcal = float(kcal) + float(kcal) * float(allowed_range)
 
-    min_carbs = float(session["carbs"]) - float(session["carbs"]) * float(session["allowed_range"])
-    max_carbs = float(session["carbs"]) + float(session["carbs"]) * float(session["allowed_range"])
+    min_protein = float(proteins) - float(proteins) * float(allowed_range)
+    max_protein = float(proteins) + float(proteins) * float(allowed_range)
 
-    min_fats = float(session["fats"]) - float(session["fats"]) * float(session["allowed_range"])
-    max_fats = float(session["fats"]) + float(session["fats"]) * float(session["allowed_range"])
+    min_carbs = float(carbs) - float(carbs) * float(allowed_range)
+    max_carbs = float(carbs) + float(carbs) * float(allowed_range)
+
+    min_fats = float(fats) - float(fats) * float(allowed_range)
+    max_fats = float(fats) + float(fats) * float(allowed_range)
 
     querystring = {"random": "true",
                    "minCalories": min_kcal, "maxCalories": max_kcal,
@@ -49,6 +54,27 @@ def get_recipes_with_nutrients():
                    "minCarbs": min_carbs, "maxCarbs": max_carbs,
                    "minFat": min_fats, "maxFat": max_fats}
 
-    recipes = requests.request("GET", url + "recipes/findByNutrients", headers=headers, params=querystring).json()
+    return requests.request("GET", url + "recipes/findByNutrients", headers=headers, params=querystring).json()
 
-    return recipes
+
+@app.route("/get_recipe")
+def get_recipe():
+    """
+    Get a recipe with specified nutrients
+    """
+
+    if "recipes_counter" in session.keys():
+        session["recipes_counter"] += 1
+
+        if session["recipes_counter"] == 9:
+            session["recipes_counter"] = 0
+            session["recipes"] = write_recipes_in_list(500, 50, 50, 10)
+
+        return session["recipes"][session["recipes_counter"]]
+
+    else:
+        session["recipes"] = write_recipes_in_list(500, 50, 50, 10)
+        session["recipes_counter"] = 0
+        return session["recipes"][0]
+
+
