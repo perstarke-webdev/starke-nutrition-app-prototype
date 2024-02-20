@@ -1,6 +1,8 @@
 <template>
   <q-page class="text-center">
+
     <div class="text-h5 q-pt-lg">Nutritional requirements</div>
+
     <div class="q-pa-md">
       <q-markup-table separator="cell">
         <tbody>
@@ -24,6 +26,11 @@
       </q-markup-table>
 
       <q-btn color="primary" class="q-mt-md" label="Submit" />
+
+      <div class="text-h5 q-pt-lg">Suggested recipe</div>
+
+      <q-img src="~assets/oatbar.webp" width="80%" style="max-width: 600px;" class="q-mt-md"/>
+
     </div>
   </q-page>
 </template>
