@@ -51,8 +51,8 @@
     <br>
 
     <div class="q-gutter-x-md q-mb-xl">
-      <q-btn color="primary" class="q-mt-md" label="Generate new recipe" />
-      <q-btn color="primary" class="q-mt-md" label="Send recipe to trainee" />
+      <q-btn color="primary" class="q-mt-md" label="Generate new" />
+      <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
     </div>
 
   </q-page>
