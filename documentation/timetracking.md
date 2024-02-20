@@ -16,14 +16,19 @@
 
 ### Tuesday, 20.02.2024
 
-  - Further quasar frontend work
-    - 100 min
-      - Create nutritional requirements input table
-      - Add recommended recipe placeholder
-      - -> Coach view frontend (with placeholders) finished for now
-    - 100 min
-      - Create clickable nav for trainee/coach view
-      - Add second page for trainee view with second layout
-      - add routes
-    - 20 min
-      - Quick update with placeholders for trainee view
+- 100 min
+  - Create nutritional requirements input table
+  - Add recommended recipe placeholder
+  - -> Coach view frontend (with placeholders) finished for now
+- 100 min
+  - Create clickable nav for trainee/coach view
+  - Add second page for trainee view with second layout
+  - add routes
+- 20 min
+  - Quick update with placeholders for trainee view
+- 90 min
+  - Basic (free) subscription to Spoonacular API
+  - Basic Spoonacular setup with headers and key as ENV
+  - Create Python function to continuously get new random recipe with given (currently hard-coded) 
+    nutrients (within 10%-range) using Spoonacular
+
