@@ -26,7 +26,8 @@
       </q-markup-table>
 
 
-      <q-btn color="primary" class="q-mt-md" label="Submit" />
+      <q-btn color="primary" class="q-mt-md" label="Submit" @click="submitForm" />
+
 
     </div>
 
@@ -47,11 +48,11 @@
       </q-text>
       </div>
 
-    <q-btn color="primary" class="q-mt-md" label="Recipe details" />
+    <q-btn color="primary" class="q-mt-md" label="Recipe details"/>
     <br>
 
     <div class="q-gutter-x-md q-mb-xl">
-      <q-btn color="primary" class="q-mt-md" label="Generate new" />
+      <q-btn color="primary" class="q-mt-md" label="Generate new" @click="submitForm"/>
       <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
     </div>
 
@@ -76,15 +77,23 @@ export default defineComponent({
       fats_wanted: '0',
       recipe_title: null,
       recipe_calories: '0',
-      recipe_proteins: '0',
-      recipe_carbs: '0',
-      recipe_fats: '0',
+      recipe_proteins: '0g',
+      recipe_carbs: '0g',
+      recipe_fats: '0g',
       recipe_img_path: null,
     };
   },
 
-    mounted() {
-    axios.get('http://127.0.0.1:8000/get_recipe?kcal=600&proteins=50&carbs=70&fats=10')
+  methods: {
+    submitForm() {
+      axios.get('http://127.0.0.1:8000/get_recipe', {
+        params: {
+          kcal: this.kcal_wanted,
+          proteins: this.proteins_wanted,
+          carbs: this.carbs_wanted,
+          fats: this.fats_wanted,
+        }
+      })
       .then(response => {
         this.recipe_title = response.data.title;
         this.recipe_kcal = response.data.calories;
@@ -96,9 +105,11 @@ export default defineComponent({
       .catch(error => {
         console.error('Error:', error);
       });
-  },
+    },
 
+  },
 });
+
 </script>
 
 
