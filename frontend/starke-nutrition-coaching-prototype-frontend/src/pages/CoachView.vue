@@ -55,6 +55,10 @@
       <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
     </div>
 
+    <div>
+      <div class="text-h5 q-mb-xl">Title: {{title}}</div>
+    </div>
+
   </q-page>
 </template>
 
@@ -63,17 +67,34 @@
 
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'CoachView',
+
   data() {
     return {
       kcal: '0',
       proteins: '0',
       carbs: '0',
       fats: '0',
+      title: null,
     };
   },
+
+    mounted() {
+    // Make an HTTP request after the component is mounted
+    axios.get('http://127.0.0.1:8000/get_recipe?kcal=600&proteins=50&carbs=70&fats=10')
+      .then(response => {
+        // If the request is successful, save the title from the JSON response in the title data property
+        this.title = response.data.title;
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+      });
+  },
+
 });
 </script>
 
