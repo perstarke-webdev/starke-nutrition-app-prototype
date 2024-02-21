@@ -27,8 +27,20 @@
 - 20 min
   - Quick update with placeholders for trainee view
 - 90 min
-  - Basic (free) subscription to Spoonacular API
+  - Basic (~29€/month) subscription to Spoonacular API
   - Basic Spoonacular setup with headers and key as ENV
   - Create Python function to continuously get new random recipe with given (currently hard-coded) 
     nutrients (within 10%-range) using Spoonacular
+
+### Wedesney, 21.02.24
+
+- 30 min
+  - Change Python function for getting recipe so that nutrients are given as parameters, not hard-coded
+- 45
+  - Setup CORS for Flask
+  - Setup Axios for making HTTP requests to the backend in the frontend
+- 45 +
+  - Get recipe with given nutrient values, givable in a table,
+    and display title, image and nutrients instead of placeholder
+  - 
 
