@@ -8,19 +8,19 @@
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-            <q-input input-class="text-center" outlined v-model="kcal" type="number" />
+            <q-input input-class="text-center" outlined v-model="kcal_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>
-            <q-input input-class="text-center" outlined v-model="proteins" type="number" />
+            <q-input input-class="text-center" outlined v-model="proteins_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Carbs</td>
-            <q-input input-class="text-center" outlined v-model="carbs" type="number" />
+            <q-input input-class="text-center" outlined v-model="carbs_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Fats</td>
-            <q-input input-class="text-center" outlined v-model="fats" type="number" />
+            <q-input input-class="text-center" outlined v-model="fats_wanted" type="number" />
         </tr>
         </tbody>
       </q-markup-table>
@@ -33,17 +33,17 @@
       <div class="text-h5 q-mb-md">Suggested recipe</div>
 
       <div class="image-container">
-        <q-img src="~assets/oatbar.webp" class="recipe-img" />
+        <q-img :src="recipe_img_path" class="recipe-img" />
         <div class="image-overlay"></div>
-        <div class="text-h5 text-bold recipe-title">Oat-Nut-Bar</div>
+        <div class="text-h5 text-bold recipe-title">{{recipe_title}}</div>
       </div>
 
       <div class="q-pt-sm">
       <q-text>
-        {{kcal}} kcal,
-        {{proteins}}g proteins,
-        {{carbs}}g carbs,
-        {{fats}}g fat
+        {{recipe_kcal}} kcal,
+        {{recipe_proteins}} proteins,
+        {{recipe_carbs}} carbs,
+        {{recipe_fats}} fat
       </q-text>
       </div>
 
@@ -53,10 +53,6 @@
     <div class="q-gutter-x-md q-mb-xl">
       <q-btn color="primary" class="q-mt-md" label="Generate new" />
       <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
-    </div>
-
-    <div>
-      <div class="text-h5 q-mb-xl">Title: {{title}}</div>
     </div>
 
   </q-page>
@@ -74,23 +70,30 @@ export default defineComponent({
 
   data() {
     return {
-      kcal: '0',
-      proteins: '0',
-      carbs: '0',
-      fats: '0',
-      title: null,
+      kcal_wanted: '0',
+      proteins_wanted: '0',
+      carbs_wanted: '0',
+      fats_wanted: '0',
+      recipe_title: null,
+      recipe_calories: '0',
+      recipe_proteins: '0',
+      recipe_carbs: '0',
+      recipe_fats: '0',
+      recipe_img_path: null,
     };
   },
 
     mounted() {
-    // Make an HTTP request after the component is mounted
     axios.get('http://127.0.0.1:8000/get_recipe?kcal=600&proteins=50&carbs=70&fats=10')
       .then(response => {
-        // If the request is successful, save the title from the JSON response in the title data property
-        this.title = response.data.title;
+        this.recipe_title = response.data.title;
+        this.recipe_kcal = response.data.calories;
+        this.recipe_proteins = response.data.protein;
+        this.recipe_carbs = response.data.carbs;
+        this.recipe_fats = response.data.fat;
+        this.recipe_img_path = response.data.image;
       })
       .catch(error => {
-        // Handle errors
         console.error('Error:', error);
       });
   },
