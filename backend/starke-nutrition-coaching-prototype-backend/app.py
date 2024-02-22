@@ -7,20 +7,19 @@ import os
 
 from werkzeug.exceptions import BadRequestKeyError
 
+
+# Create App
 app = Flask(__name__)
 CORS(app)
-
-parent_dir = os.path.dirname(os.getcwd())
-
 app.secret_key = os.urandom(12)
 app.permanent_session_lifetime = datetime.timedelta(days=7)
 
+
+# Setup environmental variables and Spoonacular headers and URL
+parent_dir = os.path.dirname(os.getcwd())
 load_dotenv(parent_dir + "/Envs/key.env")
-
 rapid_api_key = os.getenv("RAPID_API_KEY")
-
 url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"
-
 headers = {
     'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     'x-rapidapi-key': rapid_api_key,
