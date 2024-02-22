@@ -1,4 +1,4 @@
-from flask import Flask, session, request
+from flask import Flask, session, request, make_response
 from flask_cors import CORS
 from dotenv import load_dotenv
 import requests
@@ -39,17 +39,20 @@ def write_recipes_in_list(kcal, proteins, carbs, fats):
 
     allowed_range = 0.1
 
-    min_kcal = float(kcal) - float(kcal) * float(allowed_range)
-    max_kcal = float(kcal) + float(kcal) * float(allowed_range)
+    try:
+        min_kcal = float(kcal) - float(kcal) * float(allowed_range)
+        max_kcal = float(kcal) + float(kcal) * float(allowed_range)
 
-    min_protein = float(proteins) - float(proteins) * float(allowed_range)
-    max_protein = float(proteins) + float(proteins) * float(allowed_range)
+        min_protein = float(proteins) - float(proteins) * float(allowed_range)
+        max_protein = float(proteins) + float(proteins) * float(allowed_range)
 
-    min_carbs = float(carbs) - float(carbs) * float(allowed_range)
-    max_carbs = float(carbs) + float(carbs) * float(allowed_range)
+        min_carbs = float(carbs) - float(carbs) * float(allowed_range)
+        max_carbs = float(carbs) + float(carbs) * float(allowed_range)
 
-    min_fats = float(fats) - float(fats) * float(allowed_range)
-    max_fats = float(fats) + float(fats) * float(allowed_range)
+        min_fats = float(fats) - float(fats) * float(allowed_range)
+        max_fats = float(fats) + float(fats) * float(allowed_range)
+    except ValueError:
+        return make_response("ValueError", 500)
 
     querystring = {"random": "true",
                    "minCalories": min_kcal, "maxCalories": max_kcal,
@@ -62,14 +65,14 @@ def write_recipes_in_list(kcal, proteins, carbs, fats):
     if response.status_code != 200:
         print("Request failed with status code:", response.status_code)
         print(response.text)
-        return "Error"
+        return "Error Status Code != 200", response.status_code
     else:
         try:
             json_response = response.json()
             print(json_response)
         except ValueError as e:
             print("Failed to parse JSON response:", e)
-            return "Error"
+            return "Error parsing JSON", response.status_code
 
     return json_response
 
