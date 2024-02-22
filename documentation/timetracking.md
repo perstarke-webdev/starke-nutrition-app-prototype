@@ -46,10 +46,12 @@
 ### Thurday, 22.02.24
 
 - 30 min
-  - Read about testing in Python (and in general)
+  - Read /watch about testing in Python (and in general)
 - 60 min
   - Trying around with pytests in Flask
   - Get basic Flask testing up and running, but without real testing functionality yet
 - 30 min
   - Write meaningful tests for get_recipe route
+- 30 min
+  - Read / watch about testing in Quasar
 
