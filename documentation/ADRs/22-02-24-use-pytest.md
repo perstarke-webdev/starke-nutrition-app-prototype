@@ -1,4 +1,4 @@
-## Use the pytest library for testing
+## Use the pytest library for backend testing
 
 As this seems to be the easiest and most extensible way for python testing.
 
