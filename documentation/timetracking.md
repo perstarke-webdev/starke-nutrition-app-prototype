@@ -55,3 +55,14 @@
 - 30 min
   - Read / watch about testing in Quasar
 
+### Friday, 23.02.24
+
+- 30 min
+  - Read about using Cypress for frontend testing
+  - Install Cypress in Quasar project
+- 30 min
+  - Write first Cypress tests, without meaningful functionality for the project,
+    just to try out and get to know the tool, following their docu.
+- 30 min
+  - Write first somewhat meaningful Cypress test, finding out if the heading of the page hero is correct
+
