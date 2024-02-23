@@ -4,7 +4,7 @@
       <div class="q-px-lg q-pt-xl q-mb-md">
         <div class="text-h5 text-center" data-test="hero-heading">Starke Nutrition Coaching (Prototype)</div>
         <hr>
-        <div class="text-h6 text-center">Meal-planning</div>
+        <div class="text-h6 text-center" data-test="hero-subheading">Meal-planning</div>
       </div>
       <q-img
         src="~assets/header.jpg"
