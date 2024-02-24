@@ -8,7 +8,14 @@
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-            <q-input input-class="text-center" data-test="input" outlined v-model="kcal_wanted" type="number" />
+
+            <q-input input-class="text-center"
+                     data-test="input"
+                     outlined
+                     :select-on-focus="true"
+                     v-model="kcal_wanted"
+                     type="number" />
+
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>

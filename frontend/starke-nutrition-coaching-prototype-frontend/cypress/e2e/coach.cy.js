@@ -23,13 +23,13 @@ describe('Coach page', () => {
   })
 
 
-   it.only('Nutritional table displays inputted values', () => {
+   it('Nutritional table displays inputted values', () => {
 
       cy.visit('http://localhost:9000/#/coach')
 
       // Input a number into the q-input element
       const inputNumber = 500; // The number you want to test
-      cy.get("[data-test='input']").eq(0).type(inputNumber);
+      cy.get("[data-test='input']").eq(0).clear().type(inputNumber);
 
       // Verify that the inputted number is displayed
       cy.get("[data-test='input']").eq(0)
@@ -39,7 +39,7 @@ describe('Coach page', () => {
 
       // Input a number into the q-input element
       const inputNumber2 = 50; // The number you want to test
-      cy.get("[data-test='input']").eq(1).type(inputNumber2);
+      cy.get("[data-test='input']").eq(1).clear().type(inputNumber2);
 
       // Verify that the inputted number is displayed
       cy.get("[data-test='input']").eq(1)
@@ -48,7 +48,7 @@ describe('Coach page', () => {
 
 
       // Input a number into the q-input element
-      cy.get("[data-test='input']").eq(2).type(inputNumber2);
+      cy.get("[data-test='input']").eq(2).clear().type(inputNumber2);
 
       // Verify that the inputted number is displayed
       cy.get("[data-test='input']").eq(2)
@@ -59,7 +59,7 @@ describe('Coach page', () => {
 
       // Input a number into the q-input element
       const inputNumber3 = 10; // The number you want to test
-      cy.get("[data-test='input']").eq(3).type(inputNumber3);
+      cy.get("[data-test='input']").eq(3).clear().type(inputNumber3);
 
       // Verify that the inputted number is displayed
       cy.get("[data-test='input']").eq(3)
