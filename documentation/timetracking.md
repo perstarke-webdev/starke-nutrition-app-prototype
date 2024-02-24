@@ -66,3 +66,9 @@
 - 30 min
   - Write first somewhat meaningful Cypress test, finding out if the heading of the page hero is correct
 
+### Saturday, 24.02.24:
+
+- 90 min
+  - Test if nutrient table correctly displays 0 at first
+  - Test inputting and displaying numbers in nutrient table
+  - Test if submitting the nutrient form returns and displays a valid recipe
