@@ -33,7 +33,7 @@
       </q-markup-table>
 
 
-      <q-btn color="primary" class="q-mt-md" label="Submit" @click="submitForm" />
+      <q-btn data-test="submit-btn" color="primary" class="q-mt-md" label="Submit" @click="submitForm" />
 
 
     </div>
@@ -41,13 +41,13 @@
       <div class="text-h5 q-mb-md">Suggested recipe</div>
 
       <div class="image-container">
-        <q-img :src="recipe_img_path" class="recipe-img" />
+        <q-img data-test="recipe-img" :src="recipe_img_path" class="recipe-img" />
         <div class="image-overlay"></div>
         <div class="text-h5 text-bold recipe-title">{{recipe_title}}</div>
       </div>
 
       <div class="q-pt-sm">
-      <q-text>
+      <q-text data-test="received-nutrients">
         {{recipe_kcal}} kcal,
         {{recipe_proteins}} proteins,
         {{recipe_carbs}} carbs,
