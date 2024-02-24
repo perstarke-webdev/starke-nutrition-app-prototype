@@ -8,19 +8,19 @@
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-            <q-input input-class="text-center" outlined v-model="kcal_wanted" type="number" />
+            <q-input input-class="text-center" data-test="input" outlined v-model="kcal_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>
-            <q-input input-class="text-center" outlined v-model="proteins_wanted" type="number" />
+            <q-input input-class="text-center" data-test="input" outlined v-model="proteins_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Carbs</td>
-            <q-input input-class="text-center" outlined v-model="carbs_wanted" type="number" />
+            <q-input input-class="text-center" data-test="input" outlined v-model="carbs_wanted" type="number" />
         </tr>
         <tr>
           <td class="text-center text-bold">Fats</td>
-            <q-input input-class="text-center" outlined v-model="fats_wanted" type="number" />
+            <q-input input-class="text-center" data-test="input" outlined v-model="fats_wanted" type="number" />
         </tr>
         </tbody>
       </q-markup-table>
