@@ -66,9 +66,16 @@
 - 30 min
   - Write first somewhat meaningful Cypress test, finding out if the heading of the page hero is correct
 
-### Saturday, 24.02.24:
+### Saturday, 24.02.24
 
 - 90 min
   - Test if nutrient table correctly displays 0 at first
   - Test inputting and displaying numbers in nutrient table
   - Test if submitting the nutrient form returns and displays a valid recipe
+  
+### Friday, 01.03.24
+
+- 70 min
+  - Read / watch about MariaDB
+  - Download MariaDB, test-wise start creating a recipe table from command line
+  - Install Python SQLAlchemy
