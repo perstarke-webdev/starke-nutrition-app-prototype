@@ -60,7 +60,7 @@
 
     <div class="q-gutter-x-md q-mb-xl">
       <q-btn color="primary" class="q-mt-md" label="Generate new" @click="submitForm"/>
-      <q-btn color="primary" class="q-mt-md" label="Send to trainee" />
+      <q-btn color="primary" class="q-mt-md" label="Send to trainee" @click="sendToTrainee" />
     </div>
 
   </q-page>
@@ -82,6 +82,7 @@ export default defineComponent({
       proteins_wanted: '0',
       carbs_wanted: '0',
       fats_wanted: '0',
+      recipe_id: '0',
       recipe_title: null,
       recipe_calories: '0',
       recipe_proteins: '0g',
@@ -92,6 +93,7 @@ export default defineComponent({
   },
 
   methods: {
+
     submitForm() {
       axios.get('http://127.0.0.1:8000/get_recipe', {
         params: {
@@ -102,6 +104,7 @@ export default defineComponent({
         }
       })
       .then(response => {
+        this.recipe_id = response.data.id;
         this.recipe_title = response.data.title;
         this.recipe_kcal = response.data.calories;
         this.recipe_proteins = response.data.protein;
@@ -114,7 +117,33 @@ export default defineComponent({
       });
     },
 
+
+    sendToTrainee() {
+
+      axios.get('http://127.0.0.1:8000/write_recipe', {
+          params: {
+            id: this.recipe_id,
+            title: this.recipe_title,
+            calories: this.recipe_kcal,
+            protein: this.recipe_proteins,
+            carbs: this.recipe_carbs,
+            fat: this.recipe_fats,
+            image: this.recipe_img_path,
+          }
+        })
+        .then(response => {
+          console.log('Response:', response);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
+  }
+
   },
+
+
+
 });
 
 </script>
