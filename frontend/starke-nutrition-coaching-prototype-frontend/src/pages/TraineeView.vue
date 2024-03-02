@@ -1,68 +1,87 @@
 <template>
   <q-page class="text-center">
-
     <div class="text-h5 q-pt-lg">Target macros</div>
-
     <div class="q-pa-md">
       <q-markup-table separator="cell">
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-          <td class="text-center">{{kcal}}</td>
+          <td class="text-center">{{recipeKcal}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>
-          <td class="text-center">{{proteins}}g</td>
+          <td class="text-center">{{recipeProteins}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Carbs</td>
-          <td class="text-center">{{carbs}}g</td>
+          <td class="text-center">{{recipeCarbs}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Fats</td>
-          <td class="text-center">{{fats}}g</td>
+          <td class="text-center">{{recipeFats}}</td>
         </tr>
         </tbody>
       </q-markup-table>
     </div>
 
-      <div class="text-h5 q-mb-md">Suggested recipe</div>
+    <div class="text-h5 q-mb-md">Suggested recipe</div>
 
-      <div class="image-container">
-        <q-img src="~assets/oatbar.webp" class="recipe-img" />
-        <div class="image-overlay"></div>
-        <div class="text-h5 text-bold recipe-title">Oat-Nut-Bar</div>
-      </div>
+    <div class="image-container">
+      <q-img :src="recipeImgPath" class="recipe-img" />
+      <div class="image-overlay"></div>
+      <div class="text-h5 text-bold recipe-title">{{recipeTitle}}</div>
+    </div>
 
-      <div class="q-pt-sm">
+    <div class="q-pt-sm">
       <q-text>
-        {{kcal}} kcal,
-        {{proteins}}g proteins,
-        {{carbs}}g carbs,
-        {{fats}}g fat
+        {{recipeKcal}} kcal,
+        {{recipeProteins}} proteins,
+        {{recipeCarbs}} carbs,
+        {{recipeFats}} fat
       </q-text>
-      </div>
+    </div>
 
     <q-btn color="primary" class="q-mt-md q-mb-xl" label="Recipe details" />
-
   </q-page>
 </template>
 
-
-
-
 <script>
 import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'TraineeView',
+
   data() {
     return {
-      kcal: '0',
-      proteins: '0',
-      carbs: '0',
-      fats: '0',
+      recipeTitle: '',
+      recipeKcal: '0',
+      recipeProteins: '0g',
+      recipeCarbs: '0g',
+      recipeFats: '0g',
+      recipeImgPath: '',
     };
+  },
+
+  mounted() {
+    this.fetchRecipe();
+  },
+
+  methods: {
+    fetchRecipe() {
+      axios.get('http://127.0.0.1:8000/latest_recipe')
+        .then(response => {
+          this.recipeTitle = response.data.title;
+          this.recipeKcal = response.data.calories;
+          this.recipeProteins = response.data.protein;
+          this.recipeCarbs = response.data.carbs;
+          this.recipeFats = response.data.fat;
+          this.recipeImgPath = response.data.image;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    },
   },
 });
 </script>

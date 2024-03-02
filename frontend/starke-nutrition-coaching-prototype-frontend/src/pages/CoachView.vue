@@ -118,17 +118,32 @@ export default defineComponent({
     },
 
 
+    deleteAllRecipes() {
+      axios.get('http://127.0.0.1:8000/delete_all_recipes')
+        .then(response => {
+          console.log('All recipes deleted successfully:', response);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    },
+
+
+
+
     sendToTrainee() {
+
+      this.deleteAllRecipes();
 
       axios.get('http://127.0.0.1:8000/write_recipe', {
           params: {
             id: this.recipe_id,
             title: this.recipe_title,
-            calories: this.recipe_kcal,
-            protein: this.recipe_proteins,
+            kcal: this.recipe_kcal,
+            proteins: this.recipe_proteins,
             carbs: this.recipe_carbs,
-            fat: this.recipe_fats,
-            image: this.recipe_img_path,
+            fats: this.recipe_fats,
+            image_path: this.recipe_img_path,
           }
         })
         .then(response => {
