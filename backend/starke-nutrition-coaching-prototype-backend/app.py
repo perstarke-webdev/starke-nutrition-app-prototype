@@ -1,3 +1,4 @@
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Float
 from flask import Flask, session, request, make_response
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -24,6 +25,25 @@ headers = {
     'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     'x-rapidapi-key': rapid_api_key,
 }
+
+# Create the database engine
+engine = create_engine("mysql+pymysql://root:24Zorg42@localhost/recipes")
+
+# Define the metadata
+meta = MetaData()
+
+# Define the recipes table
+recipes = Table(
+    'recipes',
+    meta,
+    Column('recipe_id', Integer, primary_key=True),
+    Column('recipe_title', String(255)),
+    Column('recipe_kcal', Float),
+    Column('recipe_proteins', String(255)),
+    Column('recipe_carbs', String(255)),
+    Column('recipe_fats', String(255)),
+    Column('image_path', String(255))
+)
 
 
 def write_recipes_in_list(kcal, proteins, carbs, fats):
@@ -138,6 +158,42 @@ def get_recipe():
         session["recipes"] = write_recipes_in_list(session["kcal"], session["proteins"], session["carbs"], session["fats"])
         session["recipes_counter"] = 0
         return session["recipes"][0]
+
+
+@app.route("/write_recipe")
+def write_recipe_to_db():
+    """
+    Writes the recipe that is written into the session by get_recipe into the database.
+    Only to be called after calling get_recipe
+    """
+
+    recipe = session["recipes"][0]
+
+    recipe_id = recipe["id"]
+    recipe_title = recipe["title"]
+    recipe_kcal = recipe["calories"]
+    recipe_proteins = recipe["protein"]
+    recipe_carbs = recipe["carbs"]
+    recipe_fats = recipe["fat"]
+    recipe_image_path = recipe["image"]
+
+    # Connect to the database
+    with engine.connect() as conn:
+        # Insert a new row into the table
+        result = conn.execute(
+            recipes.insert().values(recipe_id=recipe_id, recipe_title=recipe_title, recipe_kcal=recipe_kcal,
+                                    recipe_proteins=recipe_proteins, recipe_carbs=recipe_carbs, recipe_fats=recipe_fats,
+                                    image_path=recipe_image_path))
+
+        conn.commit()
+
+        # Check if the insertion was successful
+        if result.rowcount == 1:
+            message = "INSERTION SUCCESSFUL"
+        else:
+            message = "FAILED TO INSERT"
+
+        return message
 
 
 if __name__ == "__main__":
