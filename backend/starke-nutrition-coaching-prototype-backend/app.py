@@ -167,15 +167,41 @@ def write_recipe_to_db():
     Only to be called after calling get_recipe
     """
 
-    recipe = session["recipes"][0]
+    # Extract the recipe data from the URL parameters
+    try:
+        recipe_id = request.args.get('id', None)
+    except BadRequestKeyError:
+        recipe_id = 0
 
-    recipe_id = recipe["id"]
-    recipe_title = recipe["title"]
-    recipe_kcal = recipe["calories"]
-    recipe_proteins = recipe["protein"]
-    recipe_carbs = recipe["carbs"]
-    recipe_fats = recipe["fat"]
-    recipe_image_path = recipe["image"]
+    try:
+        recipe_title = request.args.get('title', None)
+    except BadRequestKeyError:
+        recipe_title = ""
+
+    try:
+        recipe_kcal = request.args.get('kcal', None)
+    except BadRequestKeyError:
+        recipe_kcal = 0
+
+    try:
+        recipe_proteins = request.args.get('proteins', None)
+    except BadRequestKeyError:
+        recipe_proteins = ""
+
+    try:
+        recipe_carbs = request.args.get('carbs', None)
+    except BadRequestKeyError:
+        recipe_carbs = ""
+
+    try:
+        recipe_fats = request.args.get('fats', None)
+    except BadRequestKeyError:
+        recipe_fats = ""
+
+    try:
+        recipe_image_path = request.args.get('image_path', None)
+    except BadRequestKeyError:
+        recipe_image_path = ""
 
     # Connect to the database
     with engine.connect() as conn:
