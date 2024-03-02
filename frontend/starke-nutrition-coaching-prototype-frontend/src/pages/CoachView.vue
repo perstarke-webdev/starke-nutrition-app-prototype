@@ -144,6 +144,10 @@ export default defineComponent({
             carbs: this.recipe_carbs,
             fats: this.recipe_fats,
             image_path: this.recipe_img_path,
+            wanted_kcal: this.kcal_wanted,
+            wanted_proteins: this.proteins_wanted,
+            wanted_carbs: this.carbs_wanted,
+            wanted_fats: this.fats_wanted,
           }
         })
         .then(response => {

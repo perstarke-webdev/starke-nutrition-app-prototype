@@ -6,19 +6,19 @@
         <tbody>
         <tr>
           <td class="text-center text-bold">Kcal</td>
-          <td class="text-center">{{recipeKcal}}</td>
+          <td class="text-center">{{wanted_kcal}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Proteins</td>
-          <td class="text-center">{{recipeProteins}}</td>
+          <td class="text-center">{{wanted_proteins}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Carbs</td>
-          <td class="text-center">{{recipeCarbs}}</td>
+          <td class="text-center">{{wanted_carbs}}</td>
         </tr>
         <tr>
           <td class="text-center text-bold">Fats</td>
-          <td class="text-center">{{recipeFats}}</td>
+          <td class="text-center">{{wanted_fats}}</td>
         </tr>
         </tbody>
       </q-markup-table>
@@ -54,6 +54,10 @@ export default defineComponent({
 
   data() {
     return {
+      wanted_kcal: '0',
+      wanted_proteins: '',
+      wanted_carbs: '',
+      wanted_fats: '',
       recipeTitle: '',
       recipeKcal: '0',
       recipeProteins: '0g',
@@ -77,6 +81,10 @@ export default defineComponent({
           this.recipeCarbs = response.data.carbs;
           this.recipeFats = response.data.fat;
           this.recipeImgPath = response.data.image;
+          this.wanted_kcal = response.data.wanted_kcal;
+          this.wanted_proteins = response.data.wanted_proteins;
+          this.wanted_carbs = response.data.wanted_carbs;
+          this.wanted_fats = response.data.wanted_fats;
         })
         .catch(error => {
           console.error('Error:', error);

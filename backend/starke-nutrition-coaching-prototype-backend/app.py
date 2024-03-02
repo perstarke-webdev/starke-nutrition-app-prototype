@@ -42,7 +42,11 @@ recipes = Table(
     Column('recipe_proteins', String(255)),
     Column('recipe_carbs', String(255)),
     Column('recipe_fats', String(255)),
-    Column('image_path', String(255))
+    Column('image_path', String(255)),
+    Column('wanted_kcal', Float),
+    Column('wanted_proteins', String(255)),
+    Column('wanted_carbs', String(255)),
+    Column('wanted_fats', String(255))
 )
 
 
@@ -161,7 +165,7 @@ def get_recipe():
 
 
 @app.route("/write_recipe")
-def write_recipe_to_db():
+def write_recipe():
     """
     Writes the recipe that is written into the session by get_recipe into the database.
     Only to be called after calling get_recipe
@@ -203,13 +207,34 @@ def write_recipe_to_db():
     except BadRequestKeyError:
         recipe_image_path = ""
 
+    try:
+        wanted_kcal = request.args.get('wanted_kcal', None)
+    except BadRequestKeyError:
+        wanted_kcal = 0
+
+    try:
+        wanted_proteins = request.args.get('wanted_proteins', None)
+    except BadRequestKeyError:
+        wanted_proteins = ""
+
+    try:
+        wanted_carbs = request.args.get('wanted_carbs', None)
+    except BadRequestKeyError:
+        wanted_carbs = ""
+
+    try:
+        wanted_fats = request.args.get('wanted_fats', None)
+    except BadRequestKeyError:
+        wanted_fats = ""
+
     # Connect to the database
     with engine.connect() as conn:
         # Insert a new row into the table
         result = conn.execute(
             recipes.insert().values(recipe_id=recipe_id, recipe_title=recipe_title, recipe_kcal=recipe_kcal,
                                     recipe_proteins=recipe_proteins, recipe_carbs=recipe_carbs, recipe_fats=recipe_fats,
-                                    image_path=recipe_image_path))
+                                    image_path=recipe_image_path, wanted_kcal=wanted_kcal, wanted_proteins=wanted_proteins,
+                                    wanted_carbs=wanted_carbs, wanted_fats=wanted_fats))
 
         conn.commit()
 
@@ -268,7 +293,11 @@ def latest_recipe():
                 "id": recipe.recipe_id,
                 "image": recipe.image_path,
                 "protein": recipe.recipe_proteins,
-                "title": recipe.recipe_title
+                "title": recipe.recipe_title,
+                "wanted_kcal": recipe.wanted_kcal,
+                "wanted_proteins": recipe.wanted_proteins,
+                "wanted_carbs": recipe.wanted_carbs,
+                "wanted_fats": recipe.wanted_fats,
             }
         else:
             recipe_dict = {}
