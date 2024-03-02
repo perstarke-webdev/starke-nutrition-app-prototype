@@ -79,3 +79,20 @@
   - Read / watch about MariaDB
   - Download MariaDB, test-wise start creating a recipe table from command line
   - Install Python SQLAlchemy
+  
+### Saturday, 02.03.24
+
+- 90 min
+  - Read SQLAlchemy Docu
+  - Learn basics of mysql CLI
+  - Establish basic connection to MariaDB Database from Python
+- 30 min
+  - Write little test-wise Python script that can insert a recipe into the MariaDB recipe database (localhost)
+- 60 min
+  - Create Flask routes to:
+    - insert current recipe into the DB
+    - delete all recipes from the DB
+    - return latest recipe from the DB
+- 60 min
+  - Write the recipe returned by Spoonacular + wanted nutrients into the DB via button-click in the frontend
+  - Read recipe + wanted nutrients from database and display on Trainee View
