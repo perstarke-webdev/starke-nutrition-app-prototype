@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Float
-from flask import Flask, session, request, make_response
+from flask import Flask, session, request, make_response, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import requests
@@ -194,6 +194,60 @@ def write_recipe_to_db():
             message = "FAILED TO INSERT"
 
         return message
+
+
+@app.route("/delete_all_recipes")
+def delete_all_recipes():
+    """
+    Deletes all recipes from the database.
+    """
+
+    # Connect to the database
+    with engine.connect() as conn:
+        # Delete all rows from the table
+        result = conn.execute(
+            recipes.delete()
+        )
+
+        conn.commit()
+
+        # Check if the deletion was successful
+        if result.rowcount >= 0:
+            message = "DELETION SUCCESSFUL"
+        else:
+            message = "FAILED TO DELETE"
+
+        return message
+
+
+@app.route("/latest_recipe")
+def latest_recipe():
+    """
+    Reads the latest recipe from the database and returns it as a dict.
+    """
+
+    # Connect to the database
+    with engine.connect() as conn:
+        # Fetch the first recipe from the table
+        recipe = conn.execute(
+            recipes.select().limit(1)
+        ).fetchone()
+
+        # Check if a recipe was found
+        if recipe:
+            recipe_dict = {
+                "calories": recipe.recipe_kcal,
+                "carbs": recipe.recipe_carbs,
+                "fat": recipe.recipe_fats,
+                "id": recipe.recipe_id,
+                "image": recipe.image_path,
+                "protein": recipe.recipe_proteins,
+                "title": recipe.recipe_title
+            }
+        else:
+            recipe_dict = {}
+
+        return jsonify(recipe_dict)
 
 
 if __name__ == "__main__":
