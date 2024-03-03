@@ -167,8 +167,7 @@ def get_recipe():
 @app.route("/write_recipe")
 def write_recipe():
     """
-    Writes the recipe that is written into the session by get_recipe into the database.
-    Only to be called after calling get_recipe
+    Writes a recipe into the database
     """
 
     # Extract the recipe data from the URL parameters
@@ -303,6 +302,22 @@ def latest_recipe():
             recipe_dict = {}
 
         return jsonify(recipe_dict)
+
+
+@app.route("/get_link")
+def get_link():
+    """
+    Get the link to a recipe, identified by the recipe id
+    """
+
+    try:
+        recipe_id = request.args.get('recipe_id', None)
+    except BadRequestKeyError:
+        return "Error"
+
+    response = requests.request("GET", url + "recipes/{}/information".format(recipe_id), headers=headers).json()
+
+    return response["sourceUrl"]
 
 
 if __name__ == "__main__":

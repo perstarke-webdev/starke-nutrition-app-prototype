@@ -41,7 +41,14 @@
       </q-text>
     </div>
 
-    <q-btn color="primary" class="q-mt-md q-mb-xl" label="Recipe details" />
+    <q-btn
+      v-if="recipe_link"
+      color="primary"
+      class="q-mt-md q-mb-xl"
+      label="Recipe details"
+      :href="recipe_link"
+      target="_blank"
+    />
   </q-page>
 </template>
 
@@ -54,6 +61,7 @@ export default defineComponent({
 
   data() {
     return {
+      recipe_id: '0',
       wanted_kcal: '0',
       wanted_proteins: '0',
       wanted_carbs: '0',
@@ -64,6 +72,7 @@ export default defineComponent({
       recipeCarbs: '0g',
       recipeFats: '0g',
       recipeImgPath: '',
+      recipe_link: '',
     };
   },
 
@@ -75,6 +84,7 @@ export default defineComponent({
     fetchRecipe() {
       axios.get('http://127.0.0.1:8000/latest_recipe')
         .then(response => {
+          this.recipe_id = response.data.id;
           this.recipeTitle = response.data.title;
           this.recipeKcal = response.data.calories;
           this.recipeProteins = response.data.protein;
@@ -85,14 +95,28 @@ export default defineComponent({
           this.wanted_proteins = response.data.wanted_proteins;
           this.wanted_carbs = response.data.wanted_carbs;
           this.wanted_fats = response.data.wanted_fats;
+
+          // Place the second axios call here
+          axios.get('http://127.0.0.1:8000/get_link', {
+            params: {
+              recipe_id: this.recipe_id,
+            },
+          })
+          .then((linkResponse) => {
+            this.recipe_link = linkResponse.data;
+          })
+          .catch((linkError) => {
+            console.error('Error fetching recipe link:', linkError);
+          });
         })
         .catch(error => {
-          console.error('Error:', error);
+          console.error('Error fetching recipe:', error);
         });
     },
   },
 });
 </script>
+
 
 
 
