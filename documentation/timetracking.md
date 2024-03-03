@@ -96,3 +96,13 @@
 - 60 min
   - Write the recipe returned by Spoonacular + wanted nutrients into the DB via button-click in the frontend
   - Read recipe + wanted nutrients from database and display on Trainee View
+  
+### Sunday, 03.03.24
+
+- 90 min
+  - Show "successfully sent to trainee" after sending the recipe
+  - Trainee can view recipe details
+  - Coach can view recipe details
+- 30 min
+  - Update write_recipe route to POST request instead of GET, update quasar code to align with that
+  - Simplify / clean up backend a bit
