@@ -188,35 +188,31 @@ export default defineComponent({
     },
 
     sendToTrainee() {
-      this.deleteAllRecipes();
+  this.deleteAllRecipes();
 
-      axios
-        .get('http://127.0.0.1:8000/write_recipe', {
-          params: {
-            id: this.recipe_id,
-            title: this.recipe_title,
-            kcal: this.recipe_kcal,
-            proteins: this.recipe_proteins,
-            carbs: this.recipe_carbs,
-            fats: this.recipe_fats,
-            image_path: this.recipe_img_path,
-            wanted_kcal: this.kcal_wanted,
-            wanted_proteins: this.proteins_wanted,
-            wanted_carbs: this.carbs_wanted,
-            wanted_fats: this.fats_wanted,
-          },
-        })
-        .then((response) => {
-          console.log('Response:', response);
-          this.sendToTraineeSuccess = true;
-          setTimeout(() => {
-            this.sendToTraineeSuccess = false;
-          }, 3000);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    },
+  axios
+    .post('http://127.0.0.1:8000/write_recipe', {
+      id: this.recipe_id,
+      title: this.recipe_title,
+      kcal: this.recipe_kcal,
+      proteins: this.recipe_proteins,
+      carbs: this.recipe_carbs,
+      fats: this.recipe_fats,
+      image_path: this.recipe_img_path,
+      wanted_kcal: this.kcal_wanted,
+      wanted_proteins: this.proteins_wanted,
+      wanted_carbs: this.carbs_wanted,
+      wanted_fats: this.fats_wanted,
+    })
+    .then((response) => {
+      console.log('Response:', response.data);
+      this.sendToTraineeSuccess = true;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+},
+
 
     handleSendToTrainee() {
       this.sendToTrainee();

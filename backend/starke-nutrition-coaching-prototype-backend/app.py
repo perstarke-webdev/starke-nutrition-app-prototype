@@ -111,129 +111,61 @@ def get_recipe():
 
     # Get nutrients from URL
     try:
-        session["kcal"] = request.args["kcal"]
+        kcal = request.args["kcal"]
     except BadRequestKeyError:
-        if "kcal" in session.keys():
-            pass
-        else:
-            session["kcal"] = 0
+        kcal = 0
+
     try:
-        session["proteins"] = request.args["proteins"]
+        proteins = request.args["proteins"]
     except BadRequestKeyError:
-        if "proteins" in session.keys():
-            pass
-        else:
-            session["proteins"] = 0
+        proteins = 0
+
     try:
-        session["carbs"] = request.args["carbs"]
+        carbs = request.args["carbs"]
     except BadRequestKeyError:
-        if "carbs" in session.keys():
-            pass
-        else:
-            session["carbs"] = 0
+        carbs = 0
+
     try:
-        session["fats"] = request.args["fats"]
+        fats = request.args["fats"]
     except BadRequestKeyError:
-        if "fats" in session.keys():
-            pass
-        else:
-            session["fats"] = 0
+        fats = 0
 
-    # Route has been called before
-    if "recipes_counter" in session.keys():
+    recipe_list = write_recipes_in_list(kcal, proteins, carbs, fats)
 
-        # Nutrients given, create new recipe list
-        if session["kcal"] and session["proteins"] and session["carbs"] and session["fats"]:
-            session["recipes"] = write_recipes_in_list(session["kcal"], session["proteins"], session["carbs"], session["fats"])
-            session["recipes_counter"] = 0
-            return session["recipes"][0]
-
-        session["recipes_counter"] += 1
-
-        # List of recipes has been fully iterated
-        if session["recipes_counter"] == 9:
-            session["recipes_counter"] = 0
-            session["recipes"] = write_recipes_in_list(session["kcal"], session["proteins"], session["carbs"], session["fats"])
-
-        return session["recipes"][session["recipes_counter"]]
-
-    # First ever call
-    else:
-        session["recipes"] = write_recipes_in_list(session["kcal"], session["proteins"], session["carbs"], session["fats"])
-        session["recipes_counter"] = 0
-        return session["recipes"][0]
+    return recipe_list[0]
 
 
-@app.route("/write_recipe")
+@app.route("/write_recipe", methods=['POST'])
 def write_recipe():
     """
     Writes a recipe into the database
     """
 
-    # Extract the recipe data from the URL parameters
-    try:
-        recipe_id = request.args.get('id', None)
-    except BadRequestKeyError:
-        recipe_id = 0
-
-    try:
-        recipe_title = request.args.get('title', None)
-    except BadRequestKeyError:
-        recipe_title = ""
-
-    try:
-        recipe_kcal = request.args.get('kcal', None)
-    except BadRequestKeyError:
-        recipe_kcal = 0
-
-    try:
-        recipe_proteins = request.args.get('proteins', None)
-    except BadRequestKeyError:
-        recipe_proteins = ""
-
-    try:
-        recipe_carbs = request.args.get('carbs', None)
-    except BadRequestKeyError:
-        recipe_carbs = ""
-
-    try:
-        recipe_fats = request.args.get('fats', None)
-    except BadRequestKeyError:
-        recipe_fats = ""
-
-    try:
-        recipe_image_path = request.args.get('image_path', None)
-    except BadRequestKeyError:
-        recipe_image_path = ""
-
-    try:
-        wanted_kcal = request.args.get('wanted_kcal', None)
-    except BadRequestKeyError:
-        wanted_kcal = 0
-
-    try:
-        wanted_proteins = request.args.get('wanted_proteins', None)
-    except BadRequestKeyError:
-        wanted_proteins = ""
-
-    try:
-        wanted_carbs = request.args.get('wanted_carbs', None)
-    except BadRequestKeyError:
-        wanted_carbs = ""
-
-    try:
-        wanted_fats = request.args.get('wanted_fats', None)
-    except BadRequestKeyError:
-        wanted_fats = ""
+    # Extract the recipe data from the request body
+    data = request.json
+    recipe_id = data.get('id', None)
+    recipe_title = data.get('title', None)
+    recipe_kcal = data.get('kcal', None)
+    recipe_proteins = data.get('proteins', None)
+    recipe_carbs = data.get('carbs', None)
+    recipe_fats = data.get('fats', None)
+    recipe_image_path = data.get('image_path', None)
+    wanted_kcal = data.get('wanted_kcal', None)
+    wanted_proteins = data.get('wanted_proteins', None)
+    wanted_carbs = data.get('wanted_carbs', None)
+    wanted_fats = data.get('wanted_fats', None)
 
     # Connect to the database
     with engine.connect() as conn:
         # Insert a new row into the table
         result = conn.execute(
-            recipes.insert().values(recipe_id=recipe_id, recipe_title=recipe_title, recipe_kcal=recipe_kcal,
-                                    recipe_proteins=recipe_proteins, recipe_carbs=recipe_carbs, recipe_fats=recipe_fats,
-                                    image_path=recipe_image_path, wanted_kcal=wanted_kcal, wanted_proteins=wanted_proteins,
-                                    wanted_carbs=wanted_carbs, wanted_fats=wanted_fats))
+            recipes.insert().values(
+                recipe_id=recipe_id, recipe_title=recipe_title, recipe_kcal=recipe_kcal,
+                recipe_proteins=recipe_proteins, recipe_carbs=recipe_carbs, recipe_fats=recipe_fats,
+                image_path=recipe_image_path, wanted_kcal=wanted_kcal, wanted_proteins=wanted_proteins,
+                wanted_carbs=wanted_carbs, wanted_fats=wanted_fats
+            )
+        )
 
         conn.commit()
 
