@@ -55,9 +55,9 @@ export default defineComponent({
   data() {
     return {
       wanted_kcal: '0',
-      wanted_proteins: '',
-      wanted_carbs: '',
-      wanted_fats: '',
+      wanted_proteins: '0',
+      wanted_carbs: '0',
+      wanted_fats: '0',
       recipeTitle: '',
       recipeKcal: '0',
       recipeProteins: '0g',
