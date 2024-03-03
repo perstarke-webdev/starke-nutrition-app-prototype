@@ -42,7 +42,6 @@
     </div>
 
     <q-btn
-      v-if="recipe_link"
       color="primary"
       class="q-mt-md q-mb-xl"
       label="Recipe details"
@@ -96,7 +95,6 @@ export default defineComponent({
           this.wanted_carbs = response.data.wanted_carbs;
           this.wanted_fats = response.data.wanted_fats;
 
-          // Place the second axios call here
           axios.get('http://127.0.0.1:8000/get_link', {
             params: {
               recipe_id: this.recipe_id,

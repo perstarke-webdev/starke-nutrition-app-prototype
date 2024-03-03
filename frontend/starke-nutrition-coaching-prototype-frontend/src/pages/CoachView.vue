@@ -71,7 +71,13 @@
       </q-text>
     </div>
 
-    <q-btn color="primary" class="q-mt-md" label="Recipe details" />
+    <q-btn
+      color="primary"
+      class="q-mt-md"
+      label="Recipe details"
+      :href="recipe_link"
+      target="_blank"
+    />
     <br />
 
     <div class="q-gutter-x-md q-mb-xl">
@@ -113,6 +119,7 @@ export default defineComponent({
       carbs_wanted: '0',
       fats_wanted: '0',
       recipe_id: '0',
+      recipe_link: null,
       recipe_title: null,
       recipe_calories: '0',
       recipe_proteins: '0g',
@@ -151,6 +158,18 @@ export default defineComponent({
           this.recipe_carbs = response.data.carbs;
           this.recipe_fats = response.data.fat;
           this.recipe_img_path = response.data.image;
+
+                    axios.get('http://127.0.0.1:8000/get_link', {
+            params: {
+              recipe_id: this.recipe_id,
+            },
+          })
+          .then((linkResponse) => {
+            this.recipe_link = linkResponse.data;
+          })
+          .catch((linkError) => {
+            console.error('Error fetching recipe link:', linkError);
+          });
         })
         .catch((error) => {
           console.error('Error:', error);
