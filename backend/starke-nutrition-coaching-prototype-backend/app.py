@@ -257,10 +257,10 @@ app.permanent_session_lifetime = datetime.timedelta(days=7)
 #     return response["sourceUrl"]
 #
 #
-@app.route("/testpage")
-def testpage():
-    return "<h1>Testpage</h1>"
+@app.route("/startpage")
+def startpage():
+    return "<h1>Startpage</h1>"
 #
 #
 if __name__ == "__main__":
-    app.run()
+    app.run(port=8000, debug=True)
