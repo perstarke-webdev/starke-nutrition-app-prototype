@@ -111,3 +111,5 @@
 
 - 60 min:
   - Get backend (without database connection yet) deployed and running via Vercel
+- 60 min:
+  - Read about deploying frontend and database
