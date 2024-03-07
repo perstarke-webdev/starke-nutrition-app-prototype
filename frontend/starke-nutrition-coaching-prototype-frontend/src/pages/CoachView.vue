@@ -142,7 +142,7 @@ export default defineComponent({
   methods: {
     submitForm() {
       axios
-        .get('http://127.0.0.1:8000/get_recipe', {
+        .get('https://sna-prototype-backend-v2.vercel.app/get_recipe', {
           params: {
             kcal: this.kcal_wanted,
             proteins: this.proteins_wanted,
@@ -159,7 +159,7 @@ export default defineComponent({
           this.recipe_fats = response.data.fat;
           this.recipe_img_path = response.data.image;
 
-                    axios.get('http://127.0.0.1:8000/get_link', {
+                    axios.get('https://sna-prototype-backend-v2.vercel.app/get_link', {
             params: {
               recipe_id: this.recipe_id,
             },
@@ -178,7 +178,7 @@ export default defineComponent({
 
     deleteAllRecipes() {
       axios
-        .get('http://127.0.0.1:8000/delete_all_recipes')
+        .get('https://sna-prototype-backend-v2.vercel.app/delete_all_recipes')
         .then((response) => {
           console.log('All recipes deleted successfully:', response);
         })
@@ -191,7 +191,7 @@ export default defineComponent({
   this.deleteAllRecipes();
 
   axios
-    .post('http://127.0.0.1:8000/write_recipe', {
+    .post('https://sna-prototype-backend-v2.vercel.app/write_recipe', {
       id: this.recipe_id,
       title: this.recipe_title,
       kcal: this.recipe_kcal,

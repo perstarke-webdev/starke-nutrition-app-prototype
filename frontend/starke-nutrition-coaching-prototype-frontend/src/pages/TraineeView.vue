@@ -81,7 +81,7 @@ export default defineComponent({
 
   methods: {
     fetchRecipe() {
-      axios.get('http://127.0.0.1:8000/latest_recipe')
+      axios.get('https://sna-prototype-backend-v2.vercel.app/latest_recipe')
         .then(response => {
           this.recipe_id = response.data.id;
           this.recipeTitle = response.data.title;
@@ -95,7 +95,7 @@ export default defineComponent({
           this.wanted_carbs = response.data.wanted_carbs;
           this.wanted_fats = response.data.wanted_fats;
 
-          axios.get('http://127.0.0.1:8000/get_link', {
+          axios.get('https://sna-prototype-backend-v2.vercel.app/get_link', {
             params: {
               recipe_id: this.recipe_id,
             },
