@@ -106,3 +106,8 @@
 - 30 min
   - Update write_recipe route to POST request instead of GET, update quasar code to align with that
   - Simplify / clean up backend a bit
+  
+### Thursday, 07.03.24
+
+- 60 min:
+  - Get backend (without database connection yet) deployed and running via Vercel
