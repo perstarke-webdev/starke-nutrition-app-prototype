@@ -18,8 +18,13 @@ app.permanent_session_lifetime = datetime.timedelta(days=7)
 
 # Setup environmental variables and Spoonacular headers and URL
 parent_dir = os.path.dirname(os.getcwd())
+
+rapid_api_key = os.environ.get('RAPID_API_KEY')
+"""
+Before, for local testing, it was: 
 load_dotenv(parent_dir + "/Envs/key.env")
-rapid_api_key = os.getenv("RAPID_API_KEY")
+os.getenv("RAPID_API_KEY")
+"""
 url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"
 headers = {
     'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
@@ -252,5 +257,10 @@ def get_link():
     return response["sourceUrl"]
 
 
+@app.route("/testpage")
+def testpage():
+    return "<h1>Testpage</h1>"
+
+
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run()

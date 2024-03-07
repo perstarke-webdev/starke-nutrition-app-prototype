@@ -14,4 +14,4 @@ The coach-view can write a new recipe in the DB, the trainee-view can retrieve t
 ## use SQLAlchemy for MariaDB and Flask
 
 That is the way recommended by MariaDB, they have official tutorials as well, so it seems the easiest.  
-Therefore I use Python SQLAlchemy for working with MariaDB within the Flask backend. 
+Therefore, I use Python SQLAlchemy for working with MariaDB within the Flask backend. 
