@@ -14,3 +14,21 @@ So for example an endpoint for getting a recipe would be
 
 Vercel automatically deploys on Git commit&push, so all pushed changes are deployed automatically.
 
+### Frontend
+
+Frontend deployment via Vercel as well.  
+Quasar offers good docu and support for that.  
+Available here: 
+[https://sna-prototype-frontend.vercel.app/#/coach](https://sna-prototype-frontend.vercel.app/#/coach)  
+
+Not deploying on commit&push automatically, as quasar project must be build first
+and then can be easily deployed via CLI:
+- Navigate to the ```starke-nutrition-coaching-frontend``` directory
+- Run ```quasar build```
+- Navigate to ```dist/spa```
+- Run ```vercel```
+- Follow the given steps there
+
+
+
+

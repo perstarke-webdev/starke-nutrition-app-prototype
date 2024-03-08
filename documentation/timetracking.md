@@ -113,3 +113,8 @@
   - Get backend (without database connection yet) deployed and running via Vercel
 - 60 min:
   - Read about deploying frontend and database
+  
+### Friday, 08.03.24
+
+- 30 min
+  - Deploy frontend via Vercel
