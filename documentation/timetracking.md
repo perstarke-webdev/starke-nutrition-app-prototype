@@ -118,3 +118,5 @@
 
 - 30 min
   - Deploy frontend via Vercel
+- 90 min:
+  - Try deploying + connecting to DB
