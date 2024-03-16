@@ -119,6 +119,6 @@
 - 30 min
   - Deploy frontend via Vercel
 - 90 min:
-  - Try deploying + connecting to DB
-    - Creating the DB on Google Cloud works, also the table
-    - But not yet managed to create it in such a way that I can connect to it from the backend
+  - Read / try out DB deployment
+    - Create the DB + table on Google Cloud
+  
