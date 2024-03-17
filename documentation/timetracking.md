@@ -122,3 +122,9 @@
   - Read / try out DB deployment
     - Create the DB + table on Google Cloud
   
+### Sunday, 17.03.24:
+
+- 60 min
+  - Connect backend to deployed DB 
+  - Some manual testing to see if it works across devices (it does)
+  -> Finish deployment
