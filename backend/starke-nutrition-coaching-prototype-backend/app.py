@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Float
 from flask import Flask, session, request, make_response, jsonify
 from flask_cors import CORS
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import requests
 import datetime
 import os
@@ -17,11 +17,15 @@ app.permanent_session_lifetime = datetime.timedelta(days=7)
 # Setup environmental variables and Spoonacular headers and URL
 parent_dir = os.path.dirname(os.getcwd())
 
-# rapid_api_key = os.environ.get('RAPID_API_KEY')
+rapid_api_key = os.environ.get('RAPID_API_KEY')
+db_root_pw = os.environ.get("DB_ROOT_PW")
 
+"""
 # Before, for local testing, it was:
 load_dotenv(parent_dir + "/Envs/key.env")
 rapid_api_key = os.getenv("RAPID_API_KEY")
+db_root_pw = os.getenv("DB_ROOT_PW")
+"""
 
 url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"
 headers = {
@@ -30,7 +34,8 @@ headers = {
 }
 
 # Create the database engine
-connection_string = "mysql+pymysql://root:12345@34.122.247.82/recipes"
+connection_string = f"mysql+pymysql://root:{db_root_pw}@34.122.247.82/recipes"
+print(connection_string)
 engine = create_engine(connection_string)
 
 # Define the metadata
