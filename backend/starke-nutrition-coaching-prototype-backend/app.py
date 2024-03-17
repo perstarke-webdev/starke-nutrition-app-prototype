@@ -34,7 +34,7 @@ headers = {
 }
 
 # Create the database engine
-connection_string = f"mysql+pymysql://root:12345@34.122.247.82/recipes"
+connection_string = f"mysql+pymysql://root:{db_root_pw}@34.122.247.82/recipes"
 engine = create_engine(connection_string)
 
 # Define the metadata
