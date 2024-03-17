@@ -35,7 +35,6 @@ headers = {
 
 # Create the database engine
 connection_string = f"mysql+pymysql://root:{db_root_pw}@34.122.247.82/recipes"
-print(connection_string)
 engine = create_engine(connection_string)
 
 # Define the metadata
@@ -58,6 +57,9 @@ recipes = Table(
     Column('wanted_fats', String(255))
 )
 
+@app.route("/")
+def connectionstrin():
+    return connection_string
 
 def write_recipes_in_list(kcal, proteins, carbs, fats):
     """
